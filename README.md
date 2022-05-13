@@ -42,58 +42,58 @@ Home Brew это инструемнт для загрузки различных
 
 По сути это все. Наш cmakefile.txt должен выглядеть так:
 
-                cmake_minimum_required(VERSION 3.21)
-                project(untitled)
-                
-                set(CMAKE_CXX_STANDARD 14)
-                set(CMAKE_AUTOMOC ON)
-                set(CMAKE_AUTORCC ON)
-                set(CMAKE_AUTOUIC ON)
-
-                set(CMAKE_PREFIX_PATH "/opt/homebrew/Cellar/qt/6.2.3_1/lib/cmake")
-
-                find_package(Qt6 COMPONENTS
-                Core
-                Gui
-                Widgets
-                REQUIRED)
-
-                add_executable(untitled main.cpp)
-                target_link_libraries(untitled
-                Qt::Core
-                Qt::Gui
-                Qt::Widgets
-                )
-                
+        cmake_minimum_required(VERSION 3.21)
+        project(untitled)
+        
+        set(CMAKE_CXX_STANDARD 14)
+        set(CMAKE_AUTOMOC ON)
+        set(CMAKE_AUTORCC ON)
+        set(CMAKE_AUTOUIC ON)
+        
+        set(CMAKE_PREFIX_PATH "/opt/homebrew/Cellar/qt/6.2.3_1/lib/cmake")
+        
+        find_package(Qt6 COMPONENTS
+        Core
+        Gui
+        Widgets
+        REQUIRED)
+        
+        add_executable(untitled main.cpp)
+        target_link_libraries(untitled
+        Qt::Core
+        Qt::Gui
+        Qt::Widgets
+        )
+        
 Так как это мак и почти все, что связано с разработкой тут скачивается вместе с xcode, то нам не надо больше ничего делать, в том числе возиться с тул чейнами. На самом деле для установки qt на виндоус надо сделать почти все так же (разве что скачать его иначе) и повозиться с тулчейнами. Этот процесс хорошо описан тут -> https://www.jetbrains.com/help/clion/qt-tutorial.html <-
 
 Если же все-таки не хочется пользоваться шаблонами, то можно просто внести все то, что есть в данном cmake в свой cmake и все будет работать. Чтобы удостовериться, что все работает вы можете либо использовать этот код, который выводит версию QT
 
-                #include <QApplication>
-                #include <QDebug>
-                
-                using namespace std;
-                
-                int main() 
-                {
-                    qDebug() << QT_VERSION_STR;
-                    return 1;
-                }
+        #include <QApplication>
+        #include <QDebug>
+        
+        using namespace std;
+        
+        int main() 
+        {
+            qDebug() << QT_VERSION_STR;
+            return 1;
+        }
 
 либо версию из шаблона
 
-                #include <QApplication>
-                #include <QPushButton>
-                
-                int main(int argc, char *argv[]) 
-                {
-                    QApplication a(argc, argv);
-                    QPushButton button("Hello world!", nullptr);
-                    button.resize(200, 100);
-                    button.show();
-                    return QApplication::exec();
-                }
-                
+        #include <QApplication>
+        #include <QPushButton>
+        
+        int main(int argc, char *argv[]) 
+        {
+            QApplication a(argc, argv);
+            QPushButton button("Hello world!", nullptr);
+            button.resize(200, 100);
+            button.show();
+            return QApplication::exec();
+        }
+        
 которая вернет вам такую кнопочку
 ![alt text](https://github.com/GennaFomin/QT-Clion-/blob/main/Снимок%20экрана%202022-05-13%20в%2005.19.14.png)
 

@@ -122,3 +122,50 @@ P.S. На этой стадии может возникнуть проблема
 ![alt_text](https://github.com/GennaFomin/QT-Clion/blob/main/Снимок%20экрана%202022-05-19%20в%2016.35.27.png)
 
 и в ней вы можете открывать файлы c расширением .ui, которые создаются автоматически, когда вы добавляете QT UI Class в ваш проект, редактировать их и вы заметите, что файл меняется по мере того, как вы добавляете элементы интерфейса!
+
+3) Если при создании QT Ui Class и при открытие .ui файла в QT Designer вы не можете редактировать этот файл (драг-н-дропать виджеты), то вам надо добавить кусок кода, который добавляет центральный виджет. 
+
+        <widget class="QWidget" name="centralwidget">
+                <property name="sizePolicy">
+                        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                </property>
+        </widget>
+        
+под MainWindow, чтобы в итоге получить это
+
+            <ui version="4.0">
+            <author/>
+            <comment/>
+            <exportmacro/>
+            <class>Ui::MainWniasd</class>
+            <widget class="QMainWindow" name="Ui::MainWniasd">
+                <property name="geometry">
+                    <rect>
+                        <x>0</x>
+                        <y>0</y>
+                        <width>400</width>
+                        <height>300</height>
+                    </rect>
+                </property>
+                <property name="windowTitle">
+                    <string>MainWniasd</string>
+                </property>
+
+                <widget class="QWidget" name="centralwidget">
+                    <property name="sizePolicy">
+                        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                </widget>
+
+            </widget>
+            <pixmapfunction/>
+            <connections/>
+        </ui>
+        
+Эта проблема была решена при помощи https://stackoverflow.com/questions/67894319/cannot-add-widgets-to-qmainwindow-using-qt-designer-and-clion
